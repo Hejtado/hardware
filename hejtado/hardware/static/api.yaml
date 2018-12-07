@@ -1,0 +1,28 @@
+swagger: '2.0'
+info:
+  title: Hardware Microservice
+  description: Allows to fetch information about all hardware components of Hejtado system
+  version: '1.0'
+  contact:
+    email: lumir.jasiok@alfawolf.eu
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /hw:
+    get:
+      summary: List all hardware
+      description: Return list of all available hardware
+      operationId: getHardware
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: List of hardware
+          schema:
+            type: array
+            items:
+              type: integer

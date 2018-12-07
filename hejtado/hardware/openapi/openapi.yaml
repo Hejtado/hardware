@@ -1,0 +1,168 @@
+openapi: '3.0.2'
+info:
+  title: Hardware Microservice
+  description: Allows to fetch information about all hardware components of Hejtado system
+  version: '1.0'
+  contact:
+    email: lumir.jasiok@alfawolf.eu
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers: 
+- url: '/api/v1'
+  description: The developemnt server
+  variables:
+    port:
+      default: '5000'
+    basePath:
+      default: '/api/v1'
+paths:
+  /hw:
+    get:
+      operationId: api.hw.get_hw
+      summary: List all hardware
+      description: Return list of all available hardware
+      responses:
+        '200':
+          description: List of hardware
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/hardware"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /hw/quido/{hwID}:
+    get:
+      operationId: api.hw.get_quido
+      summary: Get the Quido by the ID
+      description: Returns information about Quido by its ID
+      responses:
+        '200':
+          description: Information about Quido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Quido"
+      parameters: 
+        - name: hwID
+          schema:
+            type: integer
+          in: path
+          description: ID of the Quido to fetch
+          required: true
+  /hw/thermometer/{tmID}:
+    get:
+      operationId: api.hw.get_thermometer
+      summary: Get the Thermometer by the ID
+      description: Returns information about Thermometer by its ID
+      responses:
+        '200':
+          description: Information about Thermometer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Thermometer"
+      parameters: 
+        - name: tmID
+          schema:
+            type: integer
+          in: path
+          description: ID of the Thermometer to fetch
+          required: true
+components:
+  schemas:
+    Quido:
+      type: object
+      required:
+        - id
+        - name
+        - status
+        - relays
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        status:
+          description: Available status of the Quido box
+          type: string
+          enum:
+            - ok
+            - unavailable
+            - error
+        relays:
+          type: array
+          items:
+            $ref: '#/components/schemas/Relay'
+    Quidos:
+      type: array
+      items:
+        $ref: "#/components/schemas/Quido"
+    Relay:
+      type: object
+      required:
+        - id
+        - status
+        - name
+        - type
+      properties:
+        id:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+            - on
+            - off
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - boolean
+            - timer
+    Thermometer:
+      type: object
+      required:
+        - id
+        - status
+        - name
+        - temperature
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        status:
+          description: Available status of the Thermometer
+          type: string
+          enum:
+            - ok
+            - unavailable
+            - error
+        temperature:
+          type: number
+    hw_item:
+      type: array
+      items:
+        $ref: "#/components/schemas/Quido"
+    hardware:
+      type: array
+      items:
+        $ref: "#/components/schemas/hardware"
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
