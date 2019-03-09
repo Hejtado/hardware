@@ -1,4 +1,4 @@
-openapi: '3.0.2'
+openapi: 3.0.2
 info:
   title: Hardware Microservice
   description: Allows to fetch information about all hardware components of Hejtado system
@@ -8,14 +8,14 @@ info:
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
-servers: 
-- url: '/api/v1'
-  description: The developemnt server
-  variables:
-    port:
-      default: '5000'
-    basePath:
-      default: '/api/v1'
+servers:
+  - url: /api/v1
+    description: The developemnt server
+    variables:
+      port:
+        default: '5000'
+      basePath:
+        default: /api/v1
 paths:
   /hw:
     get:
@@ -28,14 +28,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/hardware"
+                $ref: '#/components/schemas/hardware'
         default:
           description: unexpected error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
-  /hw/quido/{hwID}:
+                $ref: '#/components/schemas/Error'
+  '/hw/quido/{hwID}':
     get:
       operationId: hejtado.hardware.api.hw.get_quido
       summary: Get the Quido by the ID
@@ -46,15 +46,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Quido"
-      parameters: 
+                $ref: '#/components/schemas/Quido'
+      parameters:
         - name: hwID
           schema:
             type: integer
           in: path
           description: ID of the Quido to fetch
           required: true
-  /hw/thermometer/{tmID}:
+  '/hw/thermometer/{tmID}':
     get:
       operationId: hejtado.hardware.api.hw.get_thermometer
       summary: Get the Thermometer by the ID
@@ -65,8 +65,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Thermometer"
-      parameters: 
+                $ref: '#/components/schemas/Thermometer'
+      parameters:
         - name: tmID
           schema:
             type: integer
@@ -99,10 +99,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Relay'
+        thermometer:
+          type: array
+          items:
+            $ref: '#/components/schemas/Thermometer'
     Quidos:
       type: array
       items:
-        $ref: "#/components/schemas/Quido"
+        $ref: '#/components/schemas/Quido'
     Relay:
       type: object
       required:
@@ -117,8 +121,8 @@ components:
         status:
           type: string
           enum:
-            - on
-            - off
+            - 'on'
+            - 'off'
         name:
           type: string
         type:
@@ -151,11 +155,11 @@ components:
     hw_item:
       type: array
       items:
-        $ref: "#/components/schemas/Quido"
+        $ref: '#/components/schemas/Quido'
     hardware:
       type: array
       items:
-        $ref: "#/components/schemas/hardware"
+        $ref: '#/components/schemas/hardware'
     Error:
       required:
         - code
