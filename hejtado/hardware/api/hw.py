@@ -1,4 +1,4 @@
-from ..thermometer.thermometer import Thermometer
+from hejtado.hardware.thermometer import Thermometer
 from hejtado.hardware.hardware import thermometers_section
 
 hardware = {}
