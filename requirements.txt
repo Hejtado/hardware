@@ -1,4 +1,8 @@
 Flask==1.0.2
 Flask-Bootstrap==3.3.7.1
 connexion[swagger-ui]==2.0.2
-minibus==0.3.0
+MinimalModbus==0.7
+pysnmp==4.4.6
+pyserial==3.4
+konfig==1.1
+celery

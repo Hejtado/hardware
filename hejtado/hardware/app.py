@@ -1,17 +1,15 @@
 import os
 import connexion
 
-from connexion.resolver import RestyResolver
+def create_app():
+    """Create Flask (connexion) app"""
 
+    spec_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'openapi')
+    app = connexion.FlaskApp(__name__, specification_dir=spec_dir)
+    app.add_api('openapi.yaml')
+    return app
 
-#SETTINGS = os.path.join(os.path.dirname(__file__), 'settings.ini')
-
-#if settings is None:
-#    settings = SETTINGS
-
-
-app = connexion.FlaskApp(__name__, specification_dir='openapi/')
-app.add_api('openapi.yaml')
-app.run(port=5000, host='127.0.0.1', debug='true')
-
+if __name__ == "__main__":
+    app = create_app()
+    app.run
 

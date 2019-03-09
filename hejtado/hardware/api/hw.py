@@ -1,3 +1,6 @@
+from ..thermometer.thermometer import Thermometer
+from hejtado.hardware.hardware import thermometers_section
+
 hardware = {}
 quido = {'id': 1,
          'name': 'quido',
@@ -16,10 +19,7 @@ quido = {'id': 1,
                     'type': 'timer'},
                    ],
          }
-thermometer1 = {'id': 1,
-                'name': 'ground_floor',
-                'status': 'ok',
-                'temperature': 23.0}
+
 
 hardware[quido['id']] = quido
 
@@ -33,7 +33,16 @@ def get_quido(hwID):
     return quido
 
 def get_thermometer(tmID):
-    return thermometer1
+
+    thermometer = Thermometer(tmID)
+    temperature = thermometer.get_temperature()
+
+    thermometer = {'id': tmID,
+                    'name': thermometers_section[(tmID-1)]['name'],
+                    'status': thermometers_section[(tmID-1)]['status'],
+                    'temperature': temperature}
+
+    return thermometer
 
 def search():
     return list(hardware.values())

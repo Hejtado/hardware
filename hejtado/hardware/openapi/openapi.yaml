@@ -19,7 +19,7 @@ servers:
 paths:
   /hw:
     get:
-      operationId: api.hw.get_hw
+      operationId: hejtado.hardware.api.hw.get_hw
       summary: List all hardware
       description: Return list of all available hardware
       responses:
@@ -37,7 +37,7 @@ paths:
                 $ref: "#/components/schemas/Error"
   /hw/quido/{hwID}:
     get:
-      operationId: api.hw.get_quido
+      operationId: hejtado.hardware.api.hw.get_quido
       summary: Get the Quido by the ID
       description: Returns information about Quido by its ID
       responses:
@@ -56,7 +56,7 @@ paths:
           required: true
   /hw/thermometer/{tmID}:
     get:
-      operationId: api.hw.get_thermometer
+      operationId: hejtado.hardware.api.hw.get_thermometer
       summary: Get the Thermometer by the ID
       description: Returns information about Thermometer by its ID
       responses:

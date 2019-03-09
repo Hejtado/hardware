@@ -1,0 +1,4 @@
+include requirements.txt
+include hejtado/hardware/openapi/openapi.yaml
+include hejtado/hardware/config.yml
+include hardware.py
