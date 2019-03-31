@@ -4,7 +4,7 @@ import serial
 from hejtado.hardware.hardware import connection_section
 
 
-class Thermometer():
+class Thermometer:
     """Connect to the thermometer via modbus protocol and return current temperature"""
 
     def __init__(self, tm_id):

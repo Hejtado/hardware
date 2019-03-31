@@ -1,4 +1,5 @@
 from hejtado.hardware.thermometer import Thermometer
+from hejtado.hardware.quido import Quido
 from hejtado.hardware.hardware import thermometers_section
 
 hardware = {}
@@ -31,6 +32,25 @@ def get_hw():
 
 def get_quido(hwID):
     return quido
+    #quido = Quido()
+
+def get_boiler_thermometer(hwID, tmID):
+    """Get the temperature of the boiler"""
+    print("Calling: %s %s" % (hwID, tmID))
+    quido = Quido(hwID)
+    quido.get_temperature(tmID)
+
+def get_relay(hwID, relayID):
+    """Return the state of the relay (relayID), that is connected to Quido (hwID)"""
+
+    quido = Quido(hwID)
+    return quido.get_relay(relayID)
+
+def set_relay(hwID, relayID):
+    """Set the state of the relay (relayID), that is connected to Quido (hwID)"""
+
+    quido = Quido(hwID)
+    return quido.set_relay(relayID)
 
 def get_thermometer(tmID):
 

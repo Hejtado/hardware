@@ -54,6 +54,75 @@ paths:
           in: path
           description: ID of the Quido to fetch
           required: true
+  '/hw/quido/{hwID}/thermometer/{tmID}':
+    get:
+      operationId: hejtado.hardware.api.hw.get_boiler_thermometer
+      summary: Get the boiler temperature
+      responses:
+        '200':
+          description: Temperature of the boiler
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thermometer'
+      parameters: 
+        - name: hwID
+          schema:
+            type: integer
+          in: path
+          description: ID of the Quido to fetch
+          required: true
+        - name: tmID
+          schema:
+            type: integer
+          in: path
+          description: ID of the Thermometer to fetch
+          required: true
+  '/hw/quido/{hwID}/relay/{relayID}':
+    get:
+      operationId: hejtado.hardware.api.hw.get_relay
+      summary: Get the Quido Relay by ID
+      description: Returns information about Quido Relay
+      parameters: 
+        - name: hwID
+          schema:
+            type: integer
+          in: path
+          description: ID of the Quido to fetch
+          required: true
+        - name: relayID
+          schema:
+            type: integer
+          in: path
+          description: ID of the Relay
+          required: true
+      responses:
+        '200':
+          description: Information about Relay
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relay'
+    put:
+      operationId: hejtado.hardware.api.hw.set_relay
+      parameters: 
+      - name: hwID
+        in: path
+        description: ID of Quido box
+        required: true
+        schema:
+          type: integer
+      - name: relayID
+        in: path
+        description: ID of the Ralay
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Ralay updated
+          content:
+            'application/json': {}
   '/hw/thermometer/{tmID}':
     get:
       operationId: hejtado.hardware.api.hw.get_thermometer

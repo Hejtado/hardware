@@ -22,3 +22,7 @@ thermometers:
     name: Outside
     status:
     temperature:
+  - id: 4
+    name: Boiler
+    status:
+    temperature:
