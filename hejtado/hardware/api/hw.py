@@ -36,9 +36,13 @@ def get_quido(hwID):
 
 def get_boiler_thermometer(hwID, tmID):
     """Get the temperature of the boiler"""
-    print("Calling: %s %s" % (hwID, tmID))
     quido = Quido(hwID)
-    quido.get_temperature(tmID)
+    temperature = quido.get_temperature(tmID)
+    thermometer = {'id': tmID,
+                   'name': thermometers_section[(tmID-1)]['name'],
+                   'status': thermometers_section[(tmID-1)]['status'],
+                   'temperature': temperature}
+    return thermometer
 
 def get_relay(hwID, relayID):
     """Return the state of the relay (relayID), that is connected to Quido (hwID)"""
