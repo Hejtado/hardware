@@ -33,7 +33,7 @@ PyYAML==3.13
 requests==2.21.0
 six==1.12.0
 swagger-ui-bundle==0.0.3
-urllib3==1.24.1
+urllib3==1.24.2
 vine==1.2.0
 visitor==0.1.3
 Werkzeug==0.14.1
