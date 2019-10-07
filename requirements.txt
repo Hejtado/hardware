@@ -29,7 +29,7 @@ pyserial==3.4
 pysmi==0.3.3
 pysnmp==4.4.6
 pytz==2018.9
-PyYAML==3.13
+PyYAML==5.1
 requests==2.21.0
 six==1.12.0
 swagger-ui-bundle==0.0.3
