@@ -17,7 +17,7 @@ parser = argparse.ArgumentParser(description='Hejtado Hardware Microservice')
 parser.add_argument('-c', '--config-file', help='Config file',
                     type=str, default='config.yml')
 parser.add_argument('-d', '--debug', help='Enable Debug Mode',
-                    type=bool, default=False)
+                    action='store_true', default='True')
 
 args = parser.parse_args(args=sys.argv[1:])
 debug = args.debug

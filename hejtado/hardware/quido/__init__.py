@@ -5,6 +5,29 @@ class Quido:
 
     def __init__(self, quido_id):
         self.quido_ip = '192.168.2.241'
+        self.quido_id = quido_id
+
+    def __create_data_structure(self):
+        """Create datastructure to hold Quido values"""
+
+        quido = {'id': self.quido_id,
+                 'name': 'quido',
+                 'status': False,
+                 'relays': [{'id': 1,
+                     'status': 'on',
+                     'name': 'prodluzovacka',
+                     'type': 'boolean'},
+                    {'id': 2,
+                     'status': 'on',
+                     'name': 'ling-reset',
+                     'type': 'boolean'},
+                    {'id': 3,
+                     'status': 'off',
+                     'name': 'tepla-voda',
+                     'type': 'timer'},
+                    ],
+         }
+
 
     def get_temperature(self, tmID):
         """Get the temperature of thermometer connected to the Quido"""
@@ -13,7 +36,7 @@ class Quido:
 
     def get_relay(self, relayID):
         """Get the status of the realy"""
-        pass
+        print("SNMPGET returned {}".format(self.__snmp_get(relayID)))
 
     def set_relay(self, relayID):
         """Set the status of the relay"""

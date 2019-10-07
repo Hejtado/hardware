@@ -31,15 +31,16 @@ def get_hw():
     return list(hardware.values())
 
 def get_quido(hwID):
+    #return quido
+    quido = Quido()
     return quido
-    #quido = Quido()
 
 def get_boiler_thermometer(hwID, tmID):
     """Get the temperature of the boiler"""
     quido = Quido(hwID)
     temperature = quido.get_temperature(tmID)
     thermometer = {'id': tmID,
-                   'name': thermometers_section[(tmID-1)]['name'],
+                   'name': 'Boiler',
                    'status': thermometers_section[(tmID-1)]['status'],
                    'temperature': temperature}
     return thermometer
