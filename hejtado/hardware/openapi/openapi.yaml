@@ -118,6 +118,12 @@ paths:
         required: true
         schema:
           type: integer
+      - name: desiredState
+        in: path
+        description: Desired state of the relay
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Ralay updated

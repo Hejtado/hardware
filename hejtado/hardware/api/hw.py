@@ -51,11 +51,11 @@ def get_relay(hwID, relayID):
     quido = Quido(hwID)
     return quido.get_relay(relayID)
 
-def set_relay(hwID, relayID):
+def set_relay(hwID, relayID, desired_state):
     """Set the state of the relay (relayID), that is connected to Quido (hwID)"""
 
     quido = Quido(hwID)
-    return quido.set_relay(relayID)
+    return quido.set_relay(relayID, desired_state)
 
 def get_thermometer(tmID):
 
