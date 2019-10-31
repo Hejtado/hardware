@@ -32,6 +32,12 @@ class Thermometer:
     def get_temperature(self):
         """Get the temparature"""
 
-        return float(self.instrument.read_register(1, 1, functioncode=4))
+        temperature = float(self.instrument.read_register(1, 1, functioncode=4))
+
+        # In case of negative temperature, please see Modbus and pyminimalmodbus documentation
+        if temperature > 6000:
+            temperature = temperature - 6553.6
+
+        return temperature
         # Test code
         #return self.__get_test_temperature()
